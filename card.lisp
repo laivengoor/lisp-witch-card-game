@@ -1,24 +1,34 @@
 
-(defun randomize-cards ()
-)
+;card number 0
+;32 card deck values 6..A 0..8
+;52 card deck values 2..A 0..12
 
-(defun get-card-number ()
+(defvar card-deck 32)
+(defvar card-ring '())
+
+(defun cards-randomize ()
 	()
 )
 
-(defun output-cards ()
+(defun cards-get-number ()
+	()
+)
+
+(defun cards-output ()
 	()
 )
 
 ;check if is same cards
-(defun check-cards ()
+(defun cards-check ()
 	()
 )
 
-(defun throw-cards ()
+;throw cards from player
+(defun cards-throw ()
 	()
 )
 
-(defun change-cards ()
+;change cards between players
+(defun cards-exchange ()
 	()
 )
