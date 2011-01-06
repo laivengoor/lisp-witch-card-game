@@ -3,25 +3,12 @@
 (load "player.lisp")
 (load "card.lisp")
 
-(defun randome-number (s e)
-	()
-)
-
-(defun input-player-number ()
-	()
-)
-
-(defun user-input ()
-	()
-)
-
-(defun AI-speak ()
-	()
-)
-
-(print "Start Programm")
 (init-screen)
 
+(setq p1 (make-null-gplayer "0"))
+(print p1)
 
+(generate-player-ring 6)
+(print-players player-ring)
 
-(print "End Programm")
+(end-screen)
