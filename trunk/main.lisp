@@ -5,6 +5,8 @@
 
 (init-screen)
 
-(print (cards-nominal 12))
+
+
+(print (cards-output-cat '(1 2 3 10 12 35)))
 
 (end-screen)
