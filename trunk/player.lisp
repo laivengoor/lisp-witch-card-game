@@ -10,8 +10,10 @@
 )
 
 (defun generate-player-ring (n)
-	(loop for i from 0 to n do 
-		(setf player-ring (append player-ring (list (make-null-gplayer (write-to-string i)))))
+	(prog ()
+		(loop for i from 1 to n do 
+			(setf player-ring (append player-ring (list (make-null-gplayer (write-to-string i)))))
+		)
 	)
 )
 
@@ -21,7 +23,7 @@
 
 
 (defun get-player-number ()
-	() 
+	(- (list-length player-ring) 1)
 )
 
 
