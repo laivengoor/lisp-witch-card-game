@@ -1,10 +1,10 @@
 
 ;card number 0
-;32 card deck values 6..A 0..8 9cards
+;36 card deck values 6..A 0..8 9cards
 ;52 card deck values 2..A 0..12 13cards
 ;0 Spades 1 Hearts 2 Diamonds 3 Clubs
 
-(defvar card-deck 32)
+(defvar card-deck 36)
 (defvar card-ring '())
 
 (defun cards-randomize ()
@@ -57,7 +57,7 @@
 
 (defun cards-nominal ( card )
 	(cond
-		((= card-deck 32) 
+		((= card-deck 36) 
 			(prog ()
 				(setq n (mod card 9))
 				(if (< n 5)
@@ -90,7 +90,7 @@
 
 (defun cards-suit ( card )
 	(cond
-		((= card-deck 32) 
+		((= card-deck 36) 
 			(prog ()
 				(setq n (floor (/ card 9)))
 				(cond
