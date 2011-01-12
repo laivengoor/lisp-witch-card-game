@@ -25,10 +25,6 @@
 	)
 )
 
-(defun input-card-name ()
-	()
-)
-
 (defun AI-speak ()
 	()
 )
