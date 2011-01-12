@@ -7,6 +7,6 @@
 
 
 
-(print (cards-output-cat '(1 2 3 10 12 35)))
+(print (cards-name-input))
 
 (end-screen)

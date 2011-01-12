@@ -11,8 +11,8 @@
 	()
 )
 
-(defun cards-get-number ()
-	()
+(defun cards-amount ( player )
+	(length (gplayer-cards player))
 )
 
 (defun cards-output ( c )
@@ -51,8 +51,8 @@
 )
 
 ;check if is player card
-(defun cards-player-has ()
-	()
+(defun cards-player-has (deck card)
+	(if (find card deck) (not NIL) (not T))
 )
 
 (defun cards-nominal ( card )
@@ -118,5 +118,46 @@
 (defun cards-card ( card )
 	(
 		concatenate 'string "[" (cards-suit card) (cards-nominal card) "]"
+	)
+)
+
+(defun cards-name-input ()
+	(prog ()
+		(cond 
+			((= card-deck 36) 
+				(prog ()
+					(setq r "10")
+					(setq run T)
+					(loop while (not (not run)) do
+						(print "Input card name ([SHDC][2-10]):")
+						(setf card-name (string (read)))
+						(if (stringp card-name) (print "Thats string"))
+						(print card-name)
+						(if (stringp card-name)
+							(cond
+								((= (length card-name) 3) 
+									(prog ()
+										(print "Size3")
+										(if (string= card-name "S10") 
+											(prog (r)
+												(setf r card-name)
+												(setf run (not T))  
+											)
+										)
+									)
+								)
+								((= (length card-name) 2) ())
+							)
+						)
+					)
+					(string r)
+				)
+			)
+			((= card-deck 52) 
+				(
+					
+				)
+			)
+		)
 	)
 )
