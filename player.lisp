@@ -1,6 +1,7 @@
 
 ;all players that are in game
 (defvar player-ring '())
+(defvar players-number '())
 
 
 ;data structure for every player in da game
