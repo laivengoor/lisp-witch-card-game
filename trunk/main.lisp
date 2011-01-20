@@ -12,7 +12,7 @@
 (setf card-ring (cards-generate 36))
 (cards-output card-ring)
 (print card-ring)
-(print (cards-randomize card-ring))
+(setf card-ring (cards-randomize card-ring))
 (generate-player-ring 5)
 (cards-give-to-players player-ring card-ring)
 (print-players player-ring)
@@ -23,12 +23,15 @@
 )
 
 (print "Step 2")
-(cards-throw (gplayer-cards (nth 0 player-ring)))
+(dolist (p player-ring)
+	(setf (gplayer-cards p) (cards-throw (gplayer-cards p)))
+)
 
 (print "Step 3")
 (dolist (p player-ring)
+	(print p)
 	(cards-output (gplayer-cards p))
 )
-;(print (cards-name-input))
+
 
 (end-screen)
