@@ -2,12 +2,14 @@
 ;all players that are in game
 (defvar player-ring '())
 
+
 ;data structure for every player in da game
 (defstruct gplayer 
 	name	;string
 	cards	;list
 	endgame ;boolean true if outside game
 )
+
 
 (defun generate-player-ring (n)
 	(prog ()
@@ -16,6 +18,7 @@
 		)
 	)
 )
+
 
 (defun make-null-gplayer (name)
 	(make-gplayer :name name :cards '() :endgame T)
@@ -30,6 +33,7 @@
 (defun if-player-loser ()
 	()
 )
+
 
 (defun print-players (l)
 	(dolist (ll l)

@@ -4,6 +4,7 @@
 	(random max-n)
 )
 
+
 ;player number is between 2 and 10
 (defun input-player-number ()
 	(prog ()
@@ -17,6 +18,7 @@
 	)
 )
 
+
 (defun input-player-name ()
 	(prog ()
 		(print "Input player name: ")
@@ -24,6 +26,7 @@
 		(return player-name)
 	)
 )
+
 
 (defun AI-speak ()
 	()

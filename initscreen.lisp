@@ -4,6 +4,7 @@
 	(print "Which Card Game")
 )
 
+
 (defun init-screen-2 ()
 	(prog ()
 	(print "| | | o --- /--  |  |")
@@ -20,6 +21,7 @@
 	(print "      Arthur Artamonov (aka FreeArtMan)")
 	)
 )
+
 
 (defun end-screen ()
 	(print "End game")
