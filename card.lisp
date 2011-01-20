@@ -8,9 +8,36 @@
 (defvar card-deck 36)
 (defvar card-ring '())
 
+(defun cards-generate (number)
+	(prog ()
+		(setq l '())
+		(loop for i from 0 to 35 do
+			(push i l)
+		)
+		(return l)
+	)
+)
 
-(defun cards-randomize ()
-	()
+(defun cards-randomize (c)
+	(cond
+		((= card-deck 36)
+			(prog ()
+				(loop for i from 0 to 36 do
+					(setq rn1 (random-number 36))
+					;(print rn1)
+					(setq rn2 (random-number 36))
+					;(print rn2)
+					(setq swap 0)
+					(setf swap (nth rn1 c))
+					(setf c (replace-nth c rn1 (nth rn2 c)))
+					(setf c (replace-nth c rn2 swap))
+					;(print c)
+				)
+				(return c)
+			)
+		)
+		(T -1)
+	)
 )
 
 
@@ -24,6 +51,7 @@
 		(terpri)
 		(dolist (cc c)
 			(prin1 (format nil "~A " (cards-card cc)))
+			;(format nil "~A " (cards-card cc))
 		)
 		;(terpri)
 	)
@@ -40,6 +68,26 @@
 	)
 )
 
+;give all player cards at games start
+(defun cards-give-to-players (pl c)
+	(prog ()
+		(setq number-of-cards (list-length c))
+		(setq number-of-players (get-player-number))
+		(setq number-per-player (floor (/ number-of-cards number-of-players)))
+		(setq number-left (mod number-of-cards number-of-players))
+		(dolist (player pl)
+			(loop for m from 1 to number-per-player do
+				(setf (gplayer-cards player) (push (pop c) (gplayer-cards player)))
+			)
+		)
+		(loop for i from 0 to (- number-left 1) do
+			(setf 
+				(gplayer-cards (nth i pl)) 
+				(push (pop c) (gplayer-cards (nth i pl)))
+			)
+		)
+	)
+)
 
 ;check if is same cards
 (defun cards-check ()
@@ -76,7 +124,7 @@
 				(cond
 					((= n 5) (return "J"))
 					((= n 6) (return "Q"))
-					((= n 7) (retrun "K"))
+					((= n 7) (return "K"))
 					((= n 8) (return "A"))
 				)
 			)
@@ -193,5 +241,13 @@
 			( T (return -1))
 		)
 		(return r)
+	)
+)
+
+(defun replace-nth (list n elem)
+	(cond 
+		((null list) ())
+		((= n 0) (cons elem (cdr list)))
+		(T (cons(car list) (replace-nth (cdr list) (- n 1) elem)))
 	)
 )
