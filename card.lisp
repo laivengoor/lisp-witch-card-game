@@ -82,7 +82,7 @@
 		)
 		(loop for i from 0 to (- number-left 1) do
 			(setf 
-				(gplayer-cards (nth i pl)) 
+				(gplayer-cards (nth i pl))
 				(push (pop c) (gplayer-cards (nth i pl)))
 			)
 		)
@@ -91,13 +91,54 @@
 
 ;check if is same cards
 (defun cards-check ()
-	()
+	(
+	)
 )
 
 
-;throw cards from player
-(defun cards-throw ()
-	()
+;throw cards from player, same cards
+(defun cards-throw (c)
+	(prog ()
+		(setq for-remove '())
+		(loop for i from 0 to (- (list-length c) 2) do
+			(if (numberp (nth i c))
+				(loop for j from (+ i 1) to (- (list-length c) 1) do
+					(print (nth j c))
+					(print (not (eq NIL (nth j c))))
+					(if (numberp (nth j c))
+						(if (numberp (nth i c))
+							(prog ()
+								;(print (nth i c))
+								;(print (nth j c))
+								(print "-")
+								(print i)
+								(print j)
+								(print c)
+								(if (and (= (mod (nth i c) 4) (mod (nth j c) 4)) (not (equal i j)))
+									(prog ()
+										(print "NIL in")
+										;(print (nth j c))
+										;(print (nth i c))
+										;(print c)
+										(push (nth j c) for-remove)
+										;(print c)
+										(push (nth i c) for-remove)
+										;(print i)
+										(print (nth i c))
+										(setf (nth i c) NIL)
+										;(print ".")
+										(setf (nth j c) NIL)
+										(print "NIL out")
+									)
+								)
+								
+							)
+						)
+					)
+				)
+			)
+		)
+	)
 )
 
 
