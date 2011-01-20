@@ -1,4 +1,5 @@
 
+(defvar game-run T)
 
 (defun random-number (max-n)
 	(random max-n)

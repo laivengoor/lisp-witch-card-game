@@ -27,7 +27,7 @@
 
 
 (defun get-player-number ()
-	(- (list-length player-ring) 1)
+	(list-length player-ring)
 )
 
 
@@ -37,10 +37,12 @@
 
 
 (defun print-players (l)
-	(dolist (ll l)
-		(prog ()
-			(format t "Name: ~a Cards: ~a EndGame: ~a" (gplayer-name ll) (gplayer-cards ll) (gplayer-endgame ll))
-			(print "")
+	(loop for i from 0 to (- (list-length l) 1) do
+		(print "")
+		(format t "Name: ~a Cards: ~a EndGame: ~a"
+			(gplayer-name (nth i l))
+			(gplayer-cards (nth i l))
+			(gplayer-endgame (nth i l))
 		)
 	)
 )
