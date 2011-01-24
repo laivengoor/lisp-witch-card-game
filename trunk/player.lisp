@@ -22,7 +22,7 @@
 
 
 (defun make-null-gplayer (name)
-	(make-gplayer :name name :cards '() :endgame T)
+	(make-gplayer :name (concatenate 'string "AI " name) :cards '() :endgame T)
 )
 
 
