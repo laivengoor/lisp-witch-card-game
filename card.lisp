@@ -7,6 +7,8 @@
 
 (defvar card-deck 36)
 (defvar card-ring '())
+(defvar bad-card )
+
 
 (defun cards-generate (number)
 	(prog ()
@@ -78,7 +80,7 @@
 		(dolist (player pl)
 			(loop for m from 1 to number-per-player do
 				(setq card (pop c))
-				(print card)
+				;(print card)
 				(setf (gplayer-cards player) (push card (gplayer-cards player)))
 			)
 		)
@@ -110,12 +112,6 @@
 					(if (numberp (nth j c))
 						(if (numberp (nth i c))
 							(prog ()
-								;(print (nth i c))
-								;(print (nth j c))
-								;(print "-")
-								;(print i)
-								;(print j)
-								;(print c)
 								(if (and (= (mod (nth i c) 9) (mod (nth j c) 9)) (not (equal i j)))
 									(prog ()
 										;(print "NIL in")
@@ -151,8 +147,16 @@
 
 
 ;change cards between players
-(defun cards-exchange ()
-	()
+(defun cards-exchange ( p1 p2 )
+	(prog ()
+		(if (= p1 p2)
+			(return)
+		)
+		(setq rn1 (random-number (list-length (gplayer-cards (nth p1 player-ring)))))
+		(setq rn2 (random-number (list-length (gplayer-cards (nth p2 player-ring)))))
+		;(print rn1)
+		;(print rn2)
+	)
 )
 
 
@@ -284,7 +288,6 @@
 			)
 			((= card-deck 52) 
 				(
-					
 				)
 			)
 			( T (return -1))
