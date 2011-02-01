@@ -35,6 +35,9 @@
 	()
 )
 
+(defun if-player-not-loser ()
+	()
+)
 
 (defun print-players (l)
 	(loop for i from 0 to (- (list-length l) 1) do

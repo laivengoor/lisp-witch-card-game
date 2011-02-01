@@ -5,10 +5,15 @@
 ;0 Spades 1 Hearts 2 Diamonds 3 Clubs
 
 
+
 (defvar card-deck 36)
 (defvar card-ring '())
+(cond
+	((= card-deck 36) (defvar bad-card 33)) ; CQ 3*9+ = 33
+	((= card-deck 52) (defvat bad-card -1))
+	((T -1))
+)
 (defvar bad-card )
-
 
 (defun cards-generate (number)
 	(prog ()
@@ -16,6 +21,8 @@
 		(loop for i from 0 to 35 do
 			(push i l)
 		)
+		(setf l (remove-if #'(lambda (X) (= X bad-card)) l))
+		(print l)
 		(return l)
 	)
 )
@@ -24,10 +31,11 @@
 	(cond
 		((= card-deck 36)
 			(prog ()
-				(loop for i from 0 to 36 do
-					(setq rn1 (random-number 36))
+				(setq len (list-length c))
+				(loop for i from 0 to len do
+					(setq rn1 (random-number len))
 					;(print rn1)
-					(setq rn2 (random-number 36))
+					(setq rn2 (random-number len))
 					;(print rn2)
 					(setq swap 0)
 					(setf swap (nth rn1 c))
@@ -154,8 +162,8 @@
 		)
 		(setq rn1 (random-number (list-length (gplayer-cards (nth p1 player-ring)))))
 		(setq rn2 (random-number (list-length (gplayer-cards (nth p2 player-ring)))))
-		;(print rn1)
-		;(print rn2)
+		(print rn1)
+		(print rn2)
 	)
 )
 
