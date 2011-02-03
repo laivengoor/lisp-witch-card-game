@@ -38,7 +38,13 @@
 
 ;(cards-exchange 0 1 )
 ;(print "")
-;(confirm-to-exchange (nth 1 player-ring))
+(confirm-to-exchange (nth 1 player-ring))
+(cards-exchange 0 1)
+(print "Step 4")
+(dolist (p player-ring)
+	(print (gplayer-name p))
+	(cards-output (gplayer-cards p))
+)
 
 
 (end-screen)
