@@ -12,10 +12,12 @@
 	endgame ;boolean true if outside game
 )
 
-(defun player-go-out-of-game (p)
+(defun player-go-out-of-game ()
 	(prog ()
-		(setq pl (player-ring p))
-		(setf player-ring (remove-if #'(lambda (X) (= X pl)) (player-ring)))
+		;if end game is true
+		(setf player-ring (remove-if #'(lambda (X) (= (gplayer-endgame X) T)) player-ring))
+		;if no cards
+		(setf player-ring (remove-if #'(lambda (X) (= (list-length (gplayer-cards X)) 0))))
 	)
 )
 
@@ -40,8 +42,24 @@
 
 
 (defun if-player-loser ( p )
-	(
-		return NIL
+	(prog ()
+		;if not in game
+		(if (= (gplayer-endgame (nth p player-ring)) T)
+			(return)
+		)
+		(if (= (list-length (gplayer-cards (nth p player-ring))) 0)
+			(return)
+		)
+		;if hasnt 2 cards than not yet looser
+		(if (/= (list-length (gplayer-cards (nth p player-ring))) 2)
+			(return)
+		)
+		;if 2 cards
+		(setq cards (gplayer-cards (nth p player-ring)))
+		(if (and (string= (cards-nominal (nth 0 cards)) (cards-nominal (nth 1 cards))) (or (= (nth 0 cards) bad-card) (= (nth 1 bad-card) bad-card)))
+			(return T)
+		)
+		(return)
 	)
 )
 
