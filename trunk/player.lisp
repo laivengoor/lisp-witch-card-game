@@ -40,19 +40,14 @@
 
 
 (defun if-player-loser ( p )
-	(if (= (list-length (gplayer-cards (nth p player-ring))) 1)
-		(if (= (nth 0 (gplayer-cards (nth p player-ring))) bad-card)
-			(return T)
-			(return NIL)
-		)
-		(return NIL)
+	(
+		return NIL
 	)
 )
 
 (defun if-player-not-loser ( p )
-	(if (= 0 (list-length (gplayer-cards (nth p player-ring))))
-		(return T)
-		(return NIL)
+	(
+		return NIL
 	)
 )
 

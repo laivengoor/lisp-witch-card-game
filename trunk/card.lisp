@@ -115,16 +115,11 @@
 		(loop for i from 0 to (- (list-length c) 2) do
 			(if (numberp (nth i c))
 				(loop for j from (+ i 1) to (- (list-length c) 1) do
-					;(print (nth j c))
-					;(print (not (eq NIL (nth j c))))
 					(if (numberp (nth j c))
 						(if (numberp (nth i c))
 							(prog ()
 								(if (and (= (mod (nth i c) 9) (mod (nth j c) 9)) (not (equal i j)))
 									(prog ()
-										;(print "NIL in")
-										;(print (nth j c))
-										;(print (nth i c))
 										(if (and (/= i bad-card) (/= i bad-card))
 											(prog ()
 												(push (nth j c) for-remove)
@@ -142,31 +137,20 @@
 				)
 			)
 		)
-		;(print "Return:")
-		;(print c)
 		(return c)
 	)
 )
 
 
 ;change cards between players
+;get from player p1 card and put it inside p2
+;if p1 has 1 card he not-looser
 (defun cards-exchange ( p1 p2 )
 	(prog ()
 		(if (= p1 p2)
 			(return)
 		)
-		(setq rn1 (random-number (list-length (gplayer-cards (nth p1 player-ring)))))
-		(setq rn2 (random-number (list-length (gplayer-cards (nth p2 player-ring)))))
-		(setq swap1 0)
-		(setq swap2 0)
-		(setf swap1 (nth rn1 (gplayer-cards (nth p1 player-ring))))
-		(setf swap2 (nth rn2 (gplayer-cards (nth p2 player-ring))))
-		(setf (gplayer-cards (nth p1 player-ring)) (remove-if #'(lambda (X) (= X swap1)) (gplayer-cards (nth p1 player-ring))))
-		(setf (gplayer-cards (nth p2 player-ring)) (remove-if #'(lambda (X) (= X swap2)) (gplayer-cards (nth p2 player-ring))))
-		(setf (gplayer-cards (nth p1 player-ring)) (push swap2 (gplayer-cards (nth p1 player-ring))))
-		(setf (gplayer-cards (nth p2 player-ring)) (push swap1 (gplayer-cards (nth p2 player-ring))))
-		;(print rn1)
-		;(print rn2)
+		
 	)
 )
 
