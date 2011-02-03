@@ -147,10 +147,35 @@
 ;if p1 has 1 card he not-looser
 (defun cards-exchange ( p1 p2 )
 	(prog ()
+		;if same player
 		(if (= p1 p2)
 			(return)
 		)
-		
+		;if first player hasnt cards
+		(if (= (list-length (gplayer-cards (nth p1 player-ring))) 0)
+			(return)
+		)
+		;if second player without cards
+		(if (= (list-length (gplayer-cards (nth p2 player-ring))) 0)
+			(return)
+		)
+		;if first player has only one card
+		(if (= (list-length (gplayer-cards (nth p1 player-ring))) 1)
+			(prog ()
+				(setf (gplayer-endgame (nth p1 player-ring)) T)
+				(setf (gplayer-cards (nth p2 player-ring)) (push (nth 0 (gplayer-cards (nth p1 player-ring))) (gplayer-cards (nth p2 player-ring))))
+				(setf (gplayer-cards (nth p1 player-ring)) '())
+				(return)
+			)
+		)
+		;if first player has more than 1 card
+		(setq p1-cards (gplayer-cards (nth p1 player-ring)))
+		(setq p2-cards (gplayer-cards (nth p2 player-ring)))
+		(setq random-number (random-number (- (list-length p1-cards) 1)))
+		(setq random-card (nth random-number p1-cards))
+		(setf p1-cards (remove-if #'(lambda (X) (= X random-card)) p1-cards))
+		(setf p2-cards (push random-card p2-cards))
+		(return)
 	)
 )
 
