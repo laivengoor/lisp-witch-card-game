@@ -140,6 +140,14 @@
 	)
 )
 
+(defun cards-throw-from-player ( p )
+	(prog ()
+		(setq cards (gplayer-cards (nth p player-ring)))
+		(setf cards (cards-throw cards))
+		(setf (gplayer-cards (nth p player-ring)) cards)
+	)
+)
+
 
 ;change cards between players
 ;get from player p1 card and put it inside p2
