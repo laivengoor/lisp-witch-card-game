@@ -60,10 +60,8 @@
 	(prog ()
 		(terpri)
 		(dolist (cc c)
-			(prin1 (format nil "~A " (cards-card cc)))
-			;(format nil "~A " (cards-card cc))
+			(prin1 (format nil "~A " (cards-print-card cc)))
 		)
-		;(terpri)
 	)
 )
 
@@ -72,7 +70,7 @@
 	(prog ()
 		(setq str "")
 		(dolist (cc c)
-			(setf str (concatenate 'string str (cards-card cc)))
+			(setf str (concatenate 'string str (cards-print-card cc)))
 		)
 		(return str)
 	)
@@ -93,7 +91,7 @@
 			)
 		)
 		(loop for i from 0 to (- number-left 1) do
-			(setf 
+			(setf
 				(gplayer-cards (nth i pl))
 				(push (pop c) (gplayer-cards (nth i pl)))
 			)
@@ -120,8 +118,9 @@
 							(prog ()
 								(if (and (= (mod (nth i c) 9) (mod (nth j c) 9)) (not (equal i j)))
 									(prog ()
-										(if (and (/= i bad-card) (/= i bad-card))
+										(if (and (/= (nth i c) bad-card) (/= (nth j c) bad-card))
 											(prog ()
+												(format t "~% Throw pair ~A ~A" (cards-print-card (nth i c)) (cards-print-card (nth j c)))
 												(push (nth j c) for-remove)
 												(push (nth i c) for-remove)
 												(setf (nth j c) NIL)
@@ -148,34 +147,45 @@
 (defun cards-exchange ( p1 p2 )
 	(prog ()
 		;if same player
+		;(print "IN card-exchange")
+		;(print "ERR same player")
 		(if (= p1 p2)
-			(return)
+			(return-from cards-exchange)
 		)
+		;if players outside game
+		;(
+		;)
 		;if first player hasnt cards
+		;(print "ERR first no cards")
 		(if (= (list-length (gplayer-cards (nth p1 player-ring))) 0)
-			(return)
+			(return-from cards-exchange)
 		)
 		;if second player without cards
+		;(print "ERR second no cards")
 		(if (= (list-length (gplayer-cards (nth p2 player-ring))) 0)
-			(return)
+			(return-from cards-exchange)
 		)
 		;if first player has only one card
+		;(print "ERR first player 1 card")
 		(if (= (list-length (gplayer-cards (nth p1 player-ring))) 1)
 			(prog ()
+				(print "ERR first player 1 card")
 				(setf (gplayer-endgame (nth p1 player-ring)) T)
 				(setf (gplayer-cards (nth p2 player-ring)) (push (nth 0 (gplayer-cards (nth p1 player-ring))) (gplayer-cards (nth p2 player-ring))))
 				(setf (gplayer-cards (nth p1 player-ring)) '())
-				(return)
+				(return-from cards-exchange)
 			)
 		)
 		;if first player has more than 1 card
+		;(print "More than 1 user")
 		(setq p1-cards (gplayer-cards (nth p1 player-ring)))
 		(setq p2-cards (gplayer-cards (nth p2 player-ring)))
+		;(print (list-length p1-cards))
 		(setq random-number (random-number (- (list-length p1-cards) 1)))
 		(setq random-card (nth random-number p1-cards))
-		(setf p1-cards (remove-if #'(lambda (X) (= X random-card)) p1-cards))
-		(setf p2-cards (push random-card p2-cards))
-		(return)
+		(setf (gplayer-cards (nth p1 player-ring)) (remove-if #'(lambda (X) (= X random-card)) p1-cards))
+		(setf (gplayer-cards (nth p2 player-ring)) (push random-card p2-cards))
+		(return-from cards-exchange)
 	)
 )
 
@@ -249,7 +259,7 @@
 
 
 
-(defun cards-card ( card )
+(defun cards-print-card ( card )
 	(
 		concatenate 'string "[" (cards-suit card) (cards-nominal card) "]"
 	)
