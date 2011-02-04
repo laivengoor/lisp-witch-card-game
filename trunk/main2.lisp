@@ -3,10 +3,13 @@
 (load "initscreen.lisp")
 (load "card.lisp")
 
-(print "Start main")
+;(print "Start main")
+(init-screen-2)
+
+(setf players-number (input-player-number))
 
 (print "Generate player ring")
-(generate-player-ring 4)
+(generate-player-ring players-number)
 
 (print "Set Human player name")
 (setf (gplayer-name (nth 0 player-ring)) player-human-name)
@@ -37,12 +40,14 @@
 	(if (eq T (player-if-human-winner))
 		(prog ()
 			(print "You win you are greate player")
+			(end-screen)
 			(exit)
 		)
 	)
 	(if (eq T (player-if-human-loser))
 		(prog ()
 			(print "Sorry but today isnt your day l0z3r")
+			(end-screen)
 			(exit)
 		)
 	)	
@@ -63,7 +68,9 @@
 	)
 	(player-go-out-of-game)
 )
-(print quit-main)
+
+(end-screen)
+;(print quit-main)
 
 
 

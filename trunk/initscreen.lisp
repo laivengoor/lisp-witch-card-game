@@ -14,7 +14,7 @@
 	(print "# #   #    # #   # #   # #  ## #   #")
 	(print "#  #  #    # #   # #   # #   # #   #")
 	(print "#   # #    #  #### #   # #   # #   #")
-	(print "                Version 0.01a")
+	(print "                Version 0.02a")
 	(print "")
 	(print "")
 	(print "Project Home page: ")

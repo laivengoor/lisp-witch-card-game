@@ -11,8 +11,8 @@
 	(prog ()
 		(print "Input player number:")
 		(setq player-number (read))
-		(loop while (not (and (numberp player-number) (> player-number 1) (< player-number 5) (not (floatp player-number)))) do
-			(print "Input number [2..5]:")
+		(loop while (not (and (numberp player-number) (> player-number 1) (<= player-number 5) (not (floatp player-number)))) do
+			(format T "~%Input number [2..5]:")
 			(setf player-number (read))
 		)
 		(return player-number)

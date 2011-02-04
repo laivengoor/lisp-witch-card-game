@@ -84,6 +84,7 @@
 
 (defun player-if-human-loser ()
 	(prog ()
+		;if player have only 2 cards with queens
 		(dolist (player player-ring)
 			(if (string= (gplayer-name player) player-human-name)
 				(if (= (list-length (gplayer-cards player)) 2)
@@ -96,6 +97,12 @@
 						(return-from player-if-human-loser T)
 					)
 				)
+			)
+		)
+		;if only one player is and human being
+		(if (= (list-length player-ring) 1)
+			(if (string= (gplayer-name (nth 0 player-ring)) player-human-name)
+				(return-from player-if-human-loser T)
 			)
 		)
 	)
