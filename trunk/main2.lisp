@@ -38,8 +38,21 @@
 	;(cards-exchange 0 1)
 	;(setf (gplayer-cards (nth 1 player-ring)) (cards-throw (gplayer-cards (nth 1 player-ring))))
 	;(player-go-out-of-game)
-	(loop for i from 0 to (- (list-length player-ring) 1) do
+	;here is small logic error
+	(loop for i from 0 to (- (list-length player-ring) 2) do
+		(if (and (not (eq (nth i player-ring) NIL)) (not (eq (nth (+ i 1) player-ring) NIL)))
+			(prog ()
+				(cards-exchange i (+ i 1))
+				(cards-throw-from-player i)
+				(cards-throw-from-player (+ i 1))
+			)
+		)
 	)
+	(dolist (p player-ring)
+		(print (gplayer-name p))
+		(cards-output (gplayer-cards p))
+	)
+	(player-go-out-of-game)
 )
 (print quit-main)
 
