@@ -40,9 +40,10 @@
 	)
 )
 
-(defun confirm-to-exchange ( pl )
+(defun confirm-to-exchange ()
 	(prog ()
-		(format T "~%Exchange cards with player '~a' [yY]:" (gplayer-name pl))
+		;(format T "~%Exchange cards with player '~a' [yY]:" (gplayer-name pl))
+		(format T "~%Exchange cards with player [yY]:")
 		(setq confirm (string (read)))
 		(string-upcase confirm)
 		(loop while (not (and (string= confirm "Y"))) do

@@ -9,7 +9,7 @@
 ;players in game
 ;(setf players-number (input-player-number))
 ;(format t "In game players number ~a" player-number )
-(generate-player-ring 5)
+(generate-player-ring 2)
 (setf (gplayer-name (nth 0 player-ring)) "Human Player")
 
 
@@ -38,7 +38,7 @@
 
 ;(cards-exchange 0 1 )
 ;(print "")
-(confirm-to-exchange (nth 1 player-ring))
+(confirm-to-exchange)
 (cards-exchange 0 1)
 (print "Step 4")
 (dolist (p player-ring)
